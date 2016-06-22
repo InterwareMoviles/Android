@@ -3,14 +3,14 @@
 ## Índice ##
 
 - [Estructura de código](#estructura-de-código)
-- [Estándares de codificación](#)
-- [Librerias](#)
-- [Convención de nombres](#)
-- [Recursos](#)
-- [Pruebas unitarias](#)
-- [Ofuscamiento de código](#)
-- [Data storage](#)
-- [Usa Stetho](#)
+- [Estándares de codificación](#estándares-de-codificación)
+- [Librerias](#librerias)
+- [Convención de nombres](#convención-de-nombres)
+- [Recursos](#recursos)
+- [Pruebas unitarias](#pruebas-unitarias)
+- [Ofuscamiento de código](#ofuscamiento-de-código)
+- [Data storage](#data-storage)
+- [Usa Stetho](#usa-stetho)
 
 Estructura de código
 --------------------
