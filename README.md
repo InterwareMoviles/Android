@@ -2,7 +2,7 @@
 
 ## Índice ##
 
-- [Estructura de código](#)
+- [Estructura de código](#Estructura de código)
 - [Estándares de codificación](#)
 - [Librerias](#)
 - [Convención de nombres](#)
