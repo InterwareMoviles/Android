@@ -1,4 +1,18 @@
 # Estándares de programación en Android
+
+## Índice ##
+
+- [Estándares de programación en Android](#)
+	- [Estructura de código](#)
+	- [Estándares de codificación](#)
+	- [Librerias](#)
+	- [Convención de nombres](#)
+	- [Recursos](#)
+	- [Pruebas unitarias](#)
+	- [Ofuscamiento de código](#)
+	- [Data storage](#)
+	- [Usa Stetho](#)
+
 Estructura de código
 --------------------
 La estructura de directorios sigue la siguiente forma:
