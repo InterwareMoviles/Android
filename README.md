@@ -59,20 +59,20 @@ Dentro del directorio java se encuentra el código del proyecto, el cual debe se
 Dónde xxx es un nombre en inglés que describe el contenido del código. 
 
 ## Estándares de codificación ##
-**Librerias**
+## Librerias
 
 - GSON para parsear JSON a objetos y viceversa 
 - Retrofit para networking, considerar el uso de Picasso para cargar y cachear - imágenes y OkHttp para llamadas HTTP más eficientes.
 - RxJava para administrar eventos asíncronos.
 - Retrolamba es una librería de Java para utilizar la sintaxis Lamba en Android, ayuda a mantener un código compacto y legible en especial cuando se utiliza programación reactiva con RxJava.
 
-**Convención de nombres**
+## Convención de nombres ##
 
 - Capitalizar las constantes: CONSTANT
 - Para los acrónimos seguir de manera estricta la notación de camello, es decir UnitId en lugar de UnitID
 - Anteponer el tipo de objeto, por ejemplo para un TextView poner tvName
 
-**Recursos**
+## Recursos ##
 
 - Nombramiento: Usar la convención de poner como prefijo el tipo de recursos. Por ejemplo fragment_contact_detail.xml, view_primary_button.xml, activity_main.xml
 - Layout de los XML’s:
@@ -133,22 +133,22 @@ Buena idea:
     <string name="error.message.network">Network Error</string>
     <string name="error.message.call">Call Failed</string>
 
-**Pruebas unitarias**
+## Pruebas unitarias ##
 
  - Utilizar Robolectric para hacer unit test, no para probar las vistas.
  - Utilizar Robotium para escribir las pruebas de Interface.
 
-**Ofuscamiento de código**
+## Ofuscamiento de código ##
 
 - Utilizar Proguard para ofuscar y minimizar el código al genera un apk reléase. - - Esto no aplica para apk’s de develop.
 
-**Data storage**
+## Data storage ##
 
 - Utilizar SharedPreferences solo para banderas y información muy específica
 - En caso de requerir almacenar información algo más compleja, pero que no requiera una base de datos, utilizar ContentProviders
 - En caso de requerir una base de datos, utilizar Realm como manejador ORM.
 
-**Usa Stetho**
+## Usa Stetho ##
 
 - Stetho es una herramienta de mucha ayuda en el desarrollo de apps android ya que permite inspeccionar algunos elementos de la aplicación como la base de datos, sharedPreferences y networking.
 
