@@ -1,10 +1,11 @@
-package interware.realexample;
+package interware.realexample.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
 import interware.realexample.Adapters.CategoriesAdapter;
+import interware.realexample.R;
 import interware.realexample.Realm.CategoriesDao;
 
 public class CategoriesActivity extends AppCompatActivity {

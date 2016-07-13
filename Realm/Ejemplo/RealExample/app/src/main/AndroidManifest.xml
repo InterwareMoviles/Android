@@ -8,15 +8,20 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CategoriesActivity"
-            android:label="Categorias"></activity>
+        <activity
+            android:name=".Activities.CategoriesActivity"
+            android:label="Categorias" />
+        <activity android:name=".Activities.TiendasActivity"
+            android:label="Tiendas"/>
+        <activity android:name=".Activities.AddProductActivity"
+            android:label="Nuevo Producto"></activity>
     </application>
 
 </manifest>

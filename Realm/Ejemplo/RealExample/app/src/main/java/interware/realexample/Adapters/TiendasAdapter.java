@@ -6,53 +6,52 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-import interware.realexample.Models.Categoria;
 import interware.realexample.Models.Tienda;
 import interware.realexample.R;
 import interware.realexample.Wrappers.CustomWrapper;
 
 /**
- * Created by chelixpreciado on 7/11/16.
+ * Created by chelixpreciado on 7/12/16.
  */
-public class CategoriesAdapter extends ArrayAdapter<Categoria> {
+public class TiendasAdapter extends ArrayAdapter<Tienda> {
 
-    public CategoriesAdapter(Context context) {
+    public TiendasAdapter(Context context) {
         super(context, 0);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Categoria tCategory = getItem(position);
-        CustomWrapper wrapper;
+
+        Tienda tTienda = getItem(position);
+        CustomWrapper customWrapper;
 
         if (convertView==null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.listitem_category, null);
-            wrapper = new CustomWrapper(convertView);
-            convertView.setTag(wrapper);
+            customWrapper = new CustomWrapper(convertView);
+            convertView.setTag(customWrapper);
         }else{
-            wrapper = (CustomWrapper)convertView.getTag();
+            customWrapper = (CustomWrapper) convertView.getTag();
         }
 
-        wrapper.getTxtItemName().setText(tCategory.getCategoryName());
+        customWrapper.getTxtItemName().setText(tTienda.getStoreName() + '\n' + tTienda.getAddress());
 
         return convertView;
     }
 
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
-        Categoria tCategory = getItem(position);
-        CustomWrapper wrapper;
+        Tienda tTienda = getItem(position);
+        CustomWrapper customWrapper;
 
         if (convertView==null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.dropdown_item, null);
-            wrapper = new CustomWrapper(convertView);
-            convertView.setTag(wrapper);
+            customWrapper = new CustomWrapper(convertView);
+            convertView.setTag(customWrapper);
         }else{
-            wrapper = (CustomWrapper)convertView.getTag();
+            customWrapper = (CustomWrapper) convertView.getTag();
         }
 
-        wrapper.getTxtItemName().setText(tCategory.getCategoryName());
-
+        customWrapper.getTxtItemName().setText(tTienda.getStoreName() + ", " + tTienda.getAddress());
         return convertView;
     }
 }
