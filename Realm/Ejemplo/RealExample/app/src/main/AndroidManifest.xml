@@ -18,10 +18,16 @@
         <activity
             android:name=".Activities.CategoriesActivity"
             android:label="Categorias" />
-        <activity android:name=".Activities.TiendasActivity"
-            android:label="Tiendas"/>
-        <activity android:name=".Activities.AddProductActivity"
-            android:label="Nuevo Producto"></activity>
+        <activity
+            android:name=".Activities.TiendasActivity"
+            android:label="Tiendas" />
+        <activity
+            android:name=".Activities.AddProductActivity"
+            android:label="Nuevo Producto" />
+        <activity
+            android:name=".Activities.ProductsActivity"
+            android:label="@string/title_activity_products"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

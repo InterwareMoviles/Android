@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.op_productos:
-                startActivity(new Intent(this, AddProductActivity.class));
+                startActivity(new Intent(this, ProductsActivity.class));
                 break;
             case R.id.op_categorias:
                 startActivity(new Intent(this, CategoriesActivity.class));

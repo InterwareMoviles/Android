@@ -17,16 +17,21 @@ public class ProductsDao extends RealmExample {
         super(context);
     }
 
-    private void insertProducto(Producto producto){
+    public void insertProducto(Producto producto){
         getRealm().beginTransaction();
         getRealm().copyToRealm(producto);
         getRealm().commitTransaction();
     }
 
-    private ArrayList<Producto> getProductos(){
+    public ArrayList<Producto> getProductos(){
         ArrayList<Producto> productos = new ArrayList<>();
         RealmResults<Producto> pr = getRealm().where(Producto.class).findAll();
         productos.addAll(pr);
         return productos;
+    }
+
+    public int getNextProductId(){
+        RealmResults<Producto> pr = getRealm().where(Producto.class).findAll();
+        return pr.size()+1;
     }
 }
