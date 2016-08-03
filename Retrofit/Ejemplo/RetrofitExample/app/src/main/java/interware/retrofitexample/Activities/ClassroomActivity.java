@@ -12,15 +12,15 @@ import java.util.ArrayList;
 
 import interware.retrofitexample.Adapters.ClassRoomsAdapter;
 import interware.retrofitexample.Models.ClassGroup;
+import interware.retrofitexample.Presenters.ClassRoomsPresenter;
 import interware.retrofitexample.R;
 import interware.retrofitexample.WebServices.Listeners.GetClassRoomsRequestListener;
 import interware.retrofitexample.WebServices.Requests.GetClassRoomsRequest;
 
-public class ClassroomActivity extends AppCompatActivity implements GetClassRoomsRequestListener, ClassRoomsAdapter.ClassRoomsAdapterListener {
+public class ClassroomActivity extends AppCompatActivity implements ClassRoomsAdapter.ClassRoomsAdapterListener {
 
-    private GetClassRoomsRequest getClassRoomsRequest;
     private RecyclerView rvGroups;
-    private ClassRoomsAdapter adapter;
+    private ClassRoomsPresenter classRoomsPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +35,12 @@ public class ClassroomActivity extends AppCompatActivity implements GetClassRoom
     @Override
     protected void onStart() {
         super.onStart();
-        getClassRooms();
+        classRoomsPresenter = new ClassRoomsPresenter(this, rvGroups);
+        classRoomsPresenter.loadClassrooms();
     }
 
-    /** Metodo que hace la petición para obtener los grupos **/
-    private void getClassRooms(){
-        if (getClassRoomsRequest==null)
-            getClassRoomsRequest = new GetClassRoomsRequest(this, this);
-        getClassRoomsRequest.getGroups();
-    }
 
-    @Override
+    /*@Override
     public void onGroupsObtained(ArrayList<ClassGroup> groups) {
         //Llenamos el adapter con los grupos que recibimos.
         adapter = new ClassRoomsAdapter(groups);
@@ -56,7 +51,7 @@ public class ClassroomActivity extends AppCompatActivity implements GetClassRoom
     @Override
     public void onErrorOnWs(String errorMsg) {
         Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
     @Override
     public void onGroupSelected(ClassGroup group) {

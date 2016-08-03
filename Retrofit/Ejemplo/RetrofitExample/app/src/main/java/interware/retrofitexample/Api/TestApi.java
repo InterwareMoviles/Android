@@ -12,6 +12,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import rx.Observable;
 
 /**
  * Created by chelixpreciado on 7/4/16.
@@ -19,6 +20,12 @@ import retrofit2.http.Query;
 public interface TestApi {
 
     /**Interface en la que se agregaran las peticiones a la API usando retrofit**/
+
+    /**
+     * Petición get para obtener salones con Rxandroid
+     * **/
+    @GET("/getClassrooms")
+    public Observable<GetClassRoomsResponse> getRXClassRooms();
 
     /**
      * Petición get para obtener los salones

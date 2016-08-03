@@ -49,7 +49,7 @@ public class TestRequest {
     }
 
     /** @Return regresa una instancia de retrofit. **/
-    protected TestApi getTestApi(){
+    public TestApi getTestApi(){
         if (mApi==null)
             mApi = getRetrofitInstance().create(TestApi.class);
         return mApi;
