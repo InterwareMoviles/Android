@@ -1,11 +1,8 @@
 package interware.retrofitexample.Api;
 
-import java.util.ArrayList;
-
-import interware.retrofitexample.Models.ClassGroup;
+import interware.retrofitexample.Models.GetClassRoomsResponse;
+import interware.retrofitexample.Models.GetStudentsResponse;
 import interware.retrofitexample.Models.StudentGrades;
-import interware.retrofitexample.WebServices.Responses.GetClassRoomsResponse;
-import interware.retrofitexample.WebServices.Responses.GetStudentsResponse;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -28,24 +25,20 @@ public interface TestApi {
     public Observable<GetClassRoomsResponse> getRXClassRooms();
 
     /**
-     * Petición get para obtener los salones
-     * **/
-    @GET("/getClassrooms")
-    Call<GetClassRoomsResponse> getClassRooms();
-
-    /**
+     * RXandroid
      * Petición get para obtener los alumnos de un salón, se envia como parametro el id de grupo
      * @param groupId id de grupo
      * **/
     @GET("/getStudents")
-    Call<GetStudentsResponse> getStudents(@Query("grupoId") int groupId);
+    public Observable<GetStudentsResponse> getRXStudents(@Query("grupoId") int groupId);
 
     /**
+     * RXAndroid
      * Petición post para subir calificaciones de alumnos, se envia el nombre del alumno y la calificación por materia
      * **/
     @FormUrlEncoded
     @POST("/subircalificaciones")
-    Call<StudentGrades> postScores(@Field("name") String name,
+    public Observable<StudentGrades> postRXScores(@Field("name") String name,
                                    @Field("matematicas") String calMatematicas,
                                    @Field("espaniol") String calEspaniol,
                                    @Field("biologia") String calBiologia,

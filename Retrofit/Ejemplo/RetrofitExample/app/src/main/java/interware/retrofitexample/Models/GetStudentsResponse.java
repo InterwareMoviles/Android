@@ -1,11 +1,9 @@
-package interware.retrofitexample.WebServices.Responses;
+package interware.retrofitexample.Models;
 
 import java.util.ArrayList;
 
-import interware.retrofitexample.Models.Student;
-
 /**
- * Created by chelixpreciado on 7/5/16.
+ * Created by chelixpreciado on 8/5/16.
  */
 public class GetStudentsResponse {
 
@@ -21,4 +19,5 @@ public class GetStudentsResponse {
     public void setLista(ArrayList<Student> lista) {
         this.lista = lista;
     }
+
 }

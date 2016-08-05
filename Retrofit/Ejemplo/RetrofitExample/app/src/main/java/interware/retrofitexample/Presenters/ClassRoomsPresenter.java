@@ -4,8 +4,7 @@ import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 
 import interware.retrofitexample.Adapters.ClassRoomsAdapter;
-import interware.retrofitexample.Api.TestApi;
-import interware.retrofitexample.WebServices.Responses.GetClassRoomsResponse;
+import interware.retrofitexample.Models.GetClassRoomsResponse;
 import interware.retrofitexample.WebServices.TestRequest;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -19,13 +18,16 @@ public class ClassRoomsPresenter {
     private RecyclerView listado;
     private TestRequest testRequest;
     private ClassRoomsAdapter adapter;
+    private Activity activity;
 
     public ClassRoomsPresenter(Activity activity, RecyclerView listado) {
         testRequest = new TestRequest(activity);
+        this.activity = activity;
         this.listado = listado;
     }
 
     public void loadClassrooms(){
+        testRequest.showLoader(true);
         testRequest.getTestApi()
                 .getRXClassRooms()
                 .subscribeOn(Schedulers.newThread())
@@ -33,7 +35,7 @@ public class ClassRoomsPresenter {
                 .subscribe(new Observer<GetClassRoomsResponse>() {
                     @Override
                     public void onCompleted() {
-
+                        testRequest.showLoader(false);
                     }
 
                     @Override
@@ -44,6 +46,7 @@ public class ClassRoomsPresenter {
                     @Override
                     public void onNext(GetClassRoomsResponse getClassRoomsResponse) {
                         adapter = new ClassRoomsAdapter(getClassRoomsResponse.getGrupos());
+                        adapter.setListener((ClassRoomsAdapter.ClassRoomsAdapterListener) activity);
                         listado.setAdapter(adapter);
                     }
                 });

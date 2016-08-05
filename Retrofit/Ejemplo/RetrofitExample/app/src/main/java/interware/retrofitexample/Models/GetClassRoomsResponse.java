@@ -1,11 +1,9 @@
-package interware.retrofitexample.WebServices.Responses;
+package interware.retrofitexample.Models;
 
 import java.util.ArrayList;
 
-import interware.retrofitexample.Models.ClassGroup;
-
 /**
- * Created by chelixpreciado on 7/5/16.
+ * Created by chelixpreciado on 8/5/16.
  */
 public class GetClassRoomsResponse {
 
@@ -20,4 +18,5 @@ public class GetClassRoomsResponse {
     public void setGrupos(ArrayList<ClassGroup> grupos) {
         this.grupos = grupos;
     }
+
 }

@@ -3,24 +3,28 @@ package interware.retrofitexample.Activities;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import interware.retrofitexample.DialogFragments.Loader;
 import interware.retrofitexample.Models.Student;
 import interware.retrofitexample.Models.StudentGrades;
+import interware.retrofitexample.Presenters.UploadScoresPresenter;
 import interware.retrofitexample.R;
-import interware.retrofitexample.WebServices.Listeners.PostScoresRequestListener;
-import interware.retrofitexample.WebServices.Requests.PostScoresRequest;
+import rx.Observer;
 
-public class UploadScoresActivity extends AppCompatActivity implements View.OnClickListener {
+public class UploadScoresActivity extends AppCompatActivity implements View.OnClickListener, Observer<StudentGrades> {
 
     private Student student;
     private TextView txtStudentName;
     private EditText edMatematicas, edEspaniol, edBiologia, edFisica, edQuimica, edHistoria, edCivica, edEdFisica;
     private Button btnPostData;
+    private UploadScoresPresenter uploadScoresPresenter;
+    private Loader loader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,28 @@ public class UploadScoresActivity extends AppCompatActivity implements View.OnCl
                     postData();
                 break;
         }
+    }
+
+    private void postData(){
+        showLoader(true);
+        uploadScoresPresenter = new UploadScoresPresenter(this);
+        uploadScoresPresenter.uploadScore(getStudent());
+    }
+
+    @Override
+    public void onCompleted() {
+        showLoader(false);
+    }
+
+    @Override
+    public void onError(Throwable e) {
+
+    }
+
+    @Override
+    public void onNext(StudentGrades studentGrades) {
+        Toast.makeText(getApplicationContext(), "Las calificaciones de " +
+                studentGrades.getNombre() + " fueron subidas con exito", Toast.LENGTH_SHORT).show();
     }
 
     private boolean validateForm(){
@@ -90,8 +116,7 @@ public class UploadScoresActivity extends AppCompatActivity implements View.OnCl
         return true;
     }
 
-    /** Metodo para subir calificaciones **/
-    private void postData(){
+    private StudentGrades getStudent(){
         StudentGrades studentGrades = new StudentGrades();
         studentGrades.setNombre(student.getNombre());
         studentGrades.setMatematicas(edMatematicas.getText().toString().trim());
@@ -102,19 +127,22 @@ public class UploadScoresActivity extends AppCompatActivity implements View.OnCl
         studentGrades.setHistoria(edHistoria.getText().toString().trim());
         studentGrades.setCivica(edCivica.getText().toString().trim());
         studentGrades.setEdfisica(edEdFisica.getText().toString().trim());
+        return  studentGrades;
+    }
 
-        PostScoresRequest postScoresRequest = new PostScoresRequest(this, new PostScoresRequestListener() {
-            @Override
-            public void onScoresUpdated(boolean haveUpdated) {
-                Toast.makeText(getApplicationContext(), "Calificaciones subidas con exito", Toast.LENGTH_SHORT).show();
-            }
+    /** Regresa un dialog que usamos como loader **/
+    public Loader getLoader(){
+        if (loader==null)
+            loader = Loader.newInstance();
+        return loader;
+    }
 
-            @Override
-            public void onError(String errorMsg) {
-                Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        postScoresRequest.postGrades(studentGrades);
+    /** Muestra u oculta el loader **/
+    public void showLoader(boolean shouldShow){
+        if (shouldShow){
+            getLoader().show(this.getFragmentManager(), "Loader");
+        }else{
+            getLoader().dismiss();
+        }
     }
 }

@@ -7,6 +7,7 @@ import interware.retrofitexample.DialogFragments.Loader;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -42,6 +43,7 @@ public class TestRequest {
             retrofit = new Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .client(httpClient.build())
                     .build();
         }
@@ -56,14 +58,14 @@ public class TestRequest {
     }
 
     /** Regresa un dialog que usamos como loader **/
-    protected Loader getLoader(){
+    public Loader getLoader(){
         if (loader==null)
             loader = Loader.newInstance();
         return loader;
     }
 
     /** Muestra u oculta el loader **/
-    protected void showLoader(boolean shouldShow){
+    public void showLoader(boolean shouldShow){
         if (shouldShow){
             getLoader().show(activity.getFragmentManager(), "Loader");
         }else{
